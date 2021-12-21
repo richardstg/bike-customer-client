@@ -76,6 +76,7 @@ const Payment = (props) => {
       <ChangePayment
         title={"Lägg till betalningsmetod"}
         isOpen={changePayment}
+        userId={user._id}
         currentMethod={user.payment_method}
         balance={user.balance}
         cardNumber={user.card_information}

@@ -40,7 +40,7 @@ const Home = (props) => {
         <>
           <Travels userId={user._id} />
           <Payment user={user} setUser={setUser} />
-          <City userId={uId} />
+          <City userId={user._id} currentCity={user.city} />
         </>
       )}
     </>

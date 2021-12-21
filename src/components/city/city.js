@@ -2,18 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Button } from "reactstrap";
 
 const City = (props) => {
-  const cityId = "61a7603dbb53f131584de9b3";
+  // const cityId = "61a7603dbb53f131584de9b3";
 
-  const [selectedCity, setSelectedCity] = useState(cityId);
+  const [selectedCity, setSelectedCity] = useState();
   const [cities, setCities] = useState();
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const saveHandler = async () => {
+  const saveHandler = async (event) => {
+    event.preventDefault();
     setError(null);
     setLoading(true);
     setSuccess(false);
+    console.log([{ propName: "city", value: selectedCity }]);
     try {
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/users/${props.userId}`,
@@ -24,9 +26,10 @@ const City = (props) => {
             "Content-Type": "application/json",
             // Authorization: "Bearer " + context.token,
           },
-          body: JSON.stringify({ city: selectedCity }),
+          body: JSON.stringify([{ propName: "city", value: selectedCity }]),
         }
       );
+      // console.log("data");
       const data = await response.json();
 
       if (!response.ok) {
@@ -54,7 +57,6 @@ const City = (props) => {
               "Content-Type": "application/json",
               // Authorization: "Bearer " + context.token,
             },
-            // body: JSON.stringify({ name, content, code: codeMode }),
           }
         );
         const data = await response.json();
@@ -70,10 +72,40 @@ const City = (props) => {
       }
     };
     getCities();
+
+    const getCurrentCity = async () => {
+      setError(null);
+      setLoading(true);
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/cities/${props.currentCity}`,
+          {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              // Authorization: "Bearer " + context.token,
+            },
+          }
+        );
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message);
+        }
+        setSelectedCity(data.city._id);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+    getCurrentCity();
   }, []);
 
   return (
     <>
+      <h4>Stad</h4>
       <form onSubmit={saveHandler}>
         <select
           class="form-select"

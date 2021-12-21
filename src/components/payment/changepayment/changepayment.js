@@ -14,39 +14,39 @@ const ChangePayment = (props) => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
-  const { userId } = props;
-
   const submitChanges = async (event) => {
     event.preventDefault();
     setError(null);
     setSuccess(false);
     setLoading(true);
-    console.log("hej");
-    // try {
-    //   const response = await fetch(
-    //     `${process.env.REACT_APP_BACKEND_URL}/users/${userId}`,
-    //     {
-    //       method: "PUT",
-    //       headers: {
-    //         Accept: "application/json",
-    //         "Content-Type": "application/json",
-    //         // Authorization: "Bearer " + context.token,
-    //       },
-    //       body: JSON.stringify({ name, content, code: codeMode }),
-    //     }
-    //   );
-    //   const data = await response.json();
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/users/${props.userId}`,
+        {
+          method: "PATCH",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            // Authorization: "Bearer " + context.token,
+          },
+          body: JSON.stringify([
+            { propName: "payment_method", value: paymentMethod },
+            { propName: "card_information", value: cardNumber },
+          ]),
+        }
+      );
+      const data = await response.json();
 
-    //   if (!response.ok) {
-    //     throw new Error(data.message);
-    //   }
-    //   props.setUser(data.user);
-    //   setLoading(false);
-    //   setSuccess(true);
-    // } catch (err) {
-    //   setError(err.message);
-    //   setLoading(false);
-    // }
+      if (!response.ok) {
+        throw new Error(data.message);
+      }
+      // props.setUser(data.user);
+      setLoading(false);
+      setSuccess(true);
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+    }
   };
 
   // useEffect(() => {
@@ -76,6 +76,7 @@ const ChangePayment = (props) => {
           </div>
           <div class="form-check">
             <input
+              required="true"
               class="form-check-input"
               type="radio"
               name="paymentMethod"
@@ -89,16 +90,28 @@ const ChangePayment = (props) => {
             </label>
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Kortnummer:</label>
+            <label for="exampleInputEmail1">Kortnummer (13-19 siffror):</label>
             <input
-              type="number"
+              required="true"
+              type="tel"
+              inputmode="numeric"
+              pattern="[0-9\s]{13,19}"
+              autocomplete="cc-number"
+              maxlength="19"
+              placeholder="xxxx xxxx xxxx xxxx"
               class="form-control"
               id="cardNumber"
-              placeholder="Skriv in kortnummer..."
+              // placeholder="Skriv in kortnummer..."
               value={cardNumber}
               onChange={(event) => setCardNumber(event.target.value)}
             />
           </div>
+          {success && <p className="text-success">Info uppdaterad.</p>}
+          {error && (
+            <p className="text-danger">
+              Info kunde inte uppdateras. Försök senare igen.
+            </p>
+          )}
         </ModalBody>
         <ModalFooter>
           <Button color="primary">Spara</Button>{" "}
