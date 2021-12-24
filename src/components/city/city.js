@@ -108,7 +108,7 @@ const City = (props) => {
       <h4>Stad</h4>
       <form onSubmit={saveHandler}>
         <select
-          class="form-select"
+          className="form-select"
           aria-label="Available bikes"
           onChange={(event) => setSelectedCity(event.target.value)}
         >

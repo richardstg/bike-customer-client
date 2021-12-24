@@ -54,9 +54,9 @@ const ChangePayment = (props) => {
   // }, [props.cardNumber]);
 
   return (
-    <Modal isOpen={props.isOpen} toggle={props.toggle} centered="true">
+    <Modal isOpen={props.isOpen} toggle={props.toggle} centered={true}>
       <ModalHeader>{props.title}</ModalHeader>
-      <form onSubmit={submitChanges}>
+      <form onSubmit={submitChanges} data-testid="change-payment-form">
         <ModalBody>
           <div class="form-check">
             <input
@@ -64,6 +64,7 @@ const ChangePayment = (props) => {
               type="radio"
               name="paymentMethod"
               id="radioRefill"
+              data-testid="radio-refill"
               value="refill"
               checked={
                 paymentMethod === "refill" || paymentMethod === "unknown"
@@ -81,6 +82,7 @@ const ChangePayment = (props) => {
               type="radio"
               name="paymentMethod"
               id="radioMonthly"
+              data-testid="radio-monthly"
               value="monthly"
               checked={paymentMethod === "monthly"}
               onChange={(event) => setPaymentMethod(event.target.value)}
@@ -115,7 +117,11 @@ const ChangePayment = (props) => {
         </ModalBody>
         <ModalFooter>
           <Button color="primary">Spara</Button>{" "}
-          <Button color="secondary" onClick={props.toggle}>
+          <Button
+            color="secondary"
+            onClick={props.toggle}
+            data-testid="close-payment-modal"
+          >
             Stäng
           </Button>
         </ModalFooter>

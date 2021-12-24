@@ -42,34 +42,35 @@ const App = () => {
     //   }
     // };
     // authenticate();
-    // const authenticate = () => {
-    //   fetch("http://localhost:1337/auth/login/success", {
-    //     method: "GET",
-    //     credentials: "include",
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json",
-    //       "Access-Control-Allow-Credentials": true,
-    //     },
-    //   })
-    //     .then((response) => {
-    //       if (response.status === 200) return response.json();
-    //       throw new Error("authentication has been failed!");
-    //     })
-    //     .then((resObject) => {
-    //       // console.log(resObject);
-    //       setToken(resObject.token);
-    //       setUser(resObject.user);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // };
-    // authenticate();
+    const authenticate = () => {
+      fetch("http://localhost:1337/auth/login/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        },
+      })
+        .then((response) => {
+          console.log(response);
+          if (response.status === 200) return response.json();
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+          console.log(resObject);
+          setToken(resObject.token);
+          setUser(resObject.user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    authenticate();
   }, []);
 
-  console.log(user);
-  console.log(token);
+  console.log("User: " + user);
+  console.log("Token: " + token);
 
   const authorizedRoutes = (
     <Switch>

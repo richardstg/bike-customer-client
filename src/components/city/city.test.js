@@ -1,14 +1,32 @@
-// import React from "react";
-// import { Router, Route } from "react-router-dom";
-// import { createMemoryHistory } from "history";
+import React from "react";
+import { Router, Route } from "react-router-dom";
+import { createMemoryHistory } from "history";
 
-// import { render, cleanup, fireEvent, screen } from "@testing-library/react";
+import { render, cleanup, fireEvent, screen } from "@testing-library/react";
 
-// import Home from "./home";
+import City from "./city";
 
-// afterEach(cleanup);
+afterEach(cleanup);
 
-// it("tests that the texts are rendered", async () => {
+it("tests that the component title is rendered", async () => {
+  const history = createMemoryHistory({
+    initialEntries: ["/"],
+  });
+  // Test first render and componentDidMount
+  render(<City />);
+  expect(await screen.findByText(/Stad/i)).toBeInTheDocument();
+});
+
+it("tests that the save button is rendered", async () => {
+  const history = createMemoryHistory({
+    initialEntries: ["/"],
+  });
+  // Test first render and componentDidMount
+  render(<City />);
+  expect(await screen.findByText(/Spara/i)).toBeInTheDocument();
+});
+
+// it("tests that the component title is rendered", async () => {
 //   const history = createMemoryHistory({
 //     initialEntries: ["/"],
 //   });
