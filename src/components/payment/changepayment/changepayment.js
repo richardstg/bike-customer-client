@@ -96,12 +96,12 @@ const ChangePayment = (props) => {
             <input
               required="true"
               type="tel"
-              inputmode="numeric"
+              inputMode="numeric"
               pattern="[0-9\s]{13,19}"
-              autocomplete="cc-number"
-              maxlength="19"
+              autoComplete="cc-number"
+              maxLength="19"
               placeholder="xxxx xxxx xxxx xxxx"
-              class="form-control"
+              className="form-control"
               id="cardNumber"
               // placeholder="Skriv in kortnummer..."
               value={cardNumber}

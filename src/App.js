@@ -5,20 +5,16 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import { GoogleLogin } from "react-google-login";
 
 import Toolbar from "./components/toolbar/toolbar";
 import Home from "./pages/home";
 import Auth from "./pages/auth";
+import { useAuth } from "./hooks/authhook";
+
 // import { AuthContext } from "./context/authcontext";
 
 const App = () => {
-  const responseGoogle = (response) => {
-    console.log(response);
-  };
-
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
+  const { token, login, logout, userId, userEmail } = useAuth();
 
   useEffect(() => {
     // const authenticate = async () => {
@@ -42,39 +38,42 @@ const App = () => {
     //   }
     // };
     // authenticate();
-    const authenticate = () => {
-      fetch("http://localhost:1337/auth/login/success", {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-        },
-      })
-        .then((response) => {
-          console.log(response);
-          if (response.status === 200) return response.json();
-          throw new Error("authentication has been failed!");
-        })
-        .then((resObject) => {
-          console.log(resObject);
-          setToken(resObject.token);
-          setUser(resObject.user);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    authenticate();
+    //   const authenticate = () => {
+    //     fetch("http://localhost:1337/auth/login/success", {
+    //       method: "GET",
+    //       credentials: "include",
+    //       headers: {
+    //         Accept: "application/json",
+    //         "Content-Type": "application/json",
+    //         "Access-Control-Allow-Credentials": true,
+    //       },
+    //     })
+    //       .then((response) => {
+    //         console.log(response);
+    //         if (response.status === 200) return response.json();
+    //         throw new Error("authentication has been failed!");
+    //       })
+    //       .then((resObject) => {
+    //         console.log(resObject);
+    //         setToken(resObject.token);
+    //         setUser(resObject.user);
+    //       })
+    //       .catch((err) => {
+    //         console.log(err);
+    //       });
+    //   };
+    //   authenticate();
   }, []);
 
-  console.log("User: " + user);
   console.log("Token: " + token);
 
   const authorizedRoutes = (
     <Switch>
-      <Route exact path="/" render={(props) => <Home />} />
+      <Route
+        exact
+        path="/"
+        render={(props) => <Home userId={userId} token={token} />}
+      />
       <Redirect to="/" />
     </Switch>
   );
@@ -88,7 +87,7 @@ const App = () => {
           <Auth
             // loginWithPopup={loginWithPopup}
             // logout={logout}
-            user={user}
+            login={login}
             // isAuthenticated={isAuthenticated}
           />
         )}
@@ -99,22 +98,11 @@ const App = () => {
 
   return (
     <div className="App container pb-5">
-      {/* <AuthContext.Provider
-        value={{
-          isLoggedIn: !!token,
-          token: token,
-          userId: userId,
-          userEmail: userEmail,
-          login: login,
-          logout: logout,
-        }}
-      > */}
       <Router>
-        <Toolbar />
+        <Toolbar logout={logout} isAuthenticated={!!token} />
         {/* {authorizedRoutes} */}
         {token ? authorizedRoutes : unauthorizedRoutes}
       </Router>
-      {/* </AuthContext.Provider> */}
     </div>
   );
 };

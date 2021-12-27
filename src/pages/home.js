@@ -4,8 +4,7 @@ import Payment from "../components/payment/payment";
 import Travels from "../components/travels/travels";
 
 const Home = (props) => {
-  const uId = "619f6ee3d0b6c914a2b58514";
-
+  // const uId = "619f6ee3d0b6c914a2b58514";
   const [user, setUser] = useState();
   const [userError, setUserError] = useState(null);
 
@@ -13,26 +12,26 @@ const Home = (props) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_BACKEND_URL}/users/${uId}`,
+          `${process.env.REACT_APP_BACKEND_URL}/users/${props.userId}`,
           {
             method: "GET",
             // headers: {
-            //   Authorization: "Bearer " + token,
+            //   Authorization: "Bearer " + props.token,
             // },
           }
         );
         const data = await response.json();
+
         if (!response.ok) {
           throw new Error(data.message);
         }
-
         setUser(data.user);
       } catch (error) {
         setUserError(error.message);
       }
     };
-    fetchData();
-  }, []);
+    props.userId && fetchData();
+  }, [props.userId]);
 
   return (
     <>

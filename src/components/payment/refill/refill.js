@@ -10,13 +10,14 @@ const Refill = (props) => {
     <Modal isOpen={props.isOpen} toggle={props.toggle} centered="true">
       <ModalHeader>Fyll på konto</ModalHeader>
       <ModalBody>
-        <form>
+        <form data-testid="refill-form">
           <div class="form-group">
             <label for="exampleInputEmail1">Ange belopp:</label>
             <input
               type="number"
               class="form-control"
               id="refillAmount"
+              data-testid="refill-input"
               placeholder="Skriv in summa..."
             />
           </div>
