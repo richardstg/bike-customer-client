@@ -33,7 +33,7 @@ const Refill = (props) => {
       if (!response.ok) {
         throw new Error(data.message);
       }
-      props.setUser(data.user);
+      props.setUser(data.updatedUser);
       setLoading(false);
       setSuccess(true);
     } catch (err) {
