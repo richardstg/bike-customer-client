@@ -18,7 +18,7 @@ const Toolbar = (props) => {
             <span className="m-3 text-dark">About</span>
           </Link> */}
           <button className="btn btn-secondary" onClick={logout}>
-            Logout
+            Logga ut
           </button>
         </>
       )}

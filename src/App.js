@@ -11,10 +11,8 @@ import Home from "./pages/home";
 import Auth from "./pages/auth";
 import { useAuth } from "./hooks/authhook";
 
-// import { AuthContext } from "./context/authcontext";
-
 const App = () => {
-  const { token, login, logout, userId, userEmail } = useAuth();
+  const { token, login, logout, userId } = useAuth();
 
   useEffect(() => {
     // const authenticate = async () => {
@@ -65,8 +63,6 @@ const App = () => {
     //   authenticate();
   }, []);
 
-  console.log("Token: " + token);
-
   const authorizedRoutes = (
     <Switch>
       <Route
@@ -80,18 +76,7 @@ const App = () => {
 
   const unauthorizedRoutes = (
     <Switch>
-      <Route
-        path="/"
-        exact
-        render={(props) => (
-          <Auth
-            // loginWithPopup={loginWithPopup}
-            // logout={logout}
-            login={login}
-            // isAuthenticated={isAuthenticated}
-          />
-        )}
-      />
+      <Route path="/" exact render={(props) => <Auth login={login} />} />
       <Redirect to="/" />
     </Switch>
   );
@@ -100,7 +85,6 @@ const App = () => {
     <div className="App container pb-5">
       <Router>
         <Toolbar logout={logout} isAuthenticated={!!token} />
-        {/* {authorizedRoutes} */}
         {token ? authorizedRoutes : unauthorizedRoutes}
       </Router>
     </div>

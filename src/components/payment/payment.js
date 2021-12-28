@@ -24,6 +24,7 @@ const Payment = (props) => {
             <div>
               <p>Saldo: {user.balance} SEK</p>
               <a
+                data-testid="refill-link"
                 href="#"
                 onClick={(event) => {
                   event.preventDefault();
@@ -35,6 +36,7 @@ const Payment = (props) => {
             </div>
           )}
           <a
+            data-testid="change-method-link"
             href="#"
             onClick={(event) => {
               event.preventDefault();
@@ -57,12 +59,14 @@ const Payment = (props) => {
             balance={user.balance}
             isOpen={refill}
             toggle={() => setRefill(false)}
+            setUser={setUser}
           />
         </>
       ) : (
         <>
           <p>Ingen nuvarande betalningsmetod.</p>
           <a
+            data-testid="add-method-link"
             href="#"
             onClick={(event) => {
               event.preventDefault();

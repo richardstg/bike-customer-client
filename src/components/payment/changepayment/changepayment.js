@@ -40,7 +40,7 @@ const ChangePayment = (props) => {
       if (!response.ok) {
         throw new Error(data.message);
       }
-      // props.setUser(data.user);
+      props.setUser(data.user);
       setLoading(false);
       setSuccess(true);
     } catch (err) {
@@ -58,9 +58,9 @@ const ChangePayment = (props) => {
       <ModalHeader>{props.title}</ModalHeader>
       <form onSubmit={submitChanges} data-testid="change-payment-form">
         <ModalBody>
-          <div class="form-check">
+          <div className="form-check">
             <input
-              class="form-check-input"
+              className="form-check-input"
               type="radio"
               name="paymentMethod"
               id="radioRefill"
@@ -71,14 +71,14 @@ const ChangePayment = (props) => {
               }
               onChange={(event) => setPaymentMethod(event.target.value)}
             />
-            <label class="form-check-label" for="radioRefill">
+            <label className="form-check-label" htmlFor="radioRefill">
               Påfyllning
             </label>
           </div>
-          <div class="form-check">
+          <div className="form-check">
             <input
-              required="true"
-              class="form-check-input"
+              required={true}
+              className="form-check-input"
               type="radio"
               name="paymentMethod"
               id="radioMonthly"
@@ -87,14 +87,16 @@ const ChangePayment = (props) => {
               checked={paymentMethod === "monthly"}
               onChange={(event) => setPaymentMethod(event.target.value)}
             />
-            <label class="form-check-label" for="radioMonthly">
+            <label className="form-check-label" htmlFor="radioMonthly">
               Månadsvis
             </label>
           </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Kortnummer (13-19 siffror):</label>
+          <div className="form-group">
+            <label htmlFor="exampleInputEmail1">
+              Kortnummer (13-19 siffror):
+            </label>
             <input
-              required="true"
+              required={true}
               type="tel"
               inputMode="numeric"
               pattern="[0-9\s]{13,19}"
