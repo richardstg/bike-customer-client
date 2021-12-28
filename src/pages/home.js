@@ -4,7 +4,6 @@ import Payment from "../components/payment/payment";
 import Travels from "../components/travels/travels";
 
 const Home = (props) => {
-  // const uId = "619f6ee3d0b6c914a2b58514";
   const [user, setUser] = useState();
   const [userError, setUserError] = useState(null);
 
