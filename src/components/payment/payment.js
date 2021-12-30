@@ -1,7 +1,4 @@
-import React, { useState, useContext } from "react";
-import { useForm } from "react-hook-form";
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
-// import { AuthContext } from "../../context/authcontext";
+import React, { useState } from "react";
 import ChangePayment from "./changepayment/changepayment";
 import Refill from "./refill/refill";
 
