@@ -16,11 +16,11 @@ const TravelModal = (props) => {
           <tbody>
             <tr>
               <th scope="col">Cykel-id</th>
-              <td scope="col">{travel.bike_id}</td>
+              <td>{travel.bike_id}</td>
             </tr>
             <tr>
               <th scope="col">Starttid</th>
-              <td scope="col">
+              <td>
                 {new Date(travel.start_time).toLocaleString("sv-SE", {
                   dateStyle: "medium",
                   timeStyle: "short",
@@ -29,7 +29,7 @@ const TravelModal = (props) => {
             </tr>
             <tr>
               <th scope="col">Sluttid</th>
-              <td scope="col">
+              <td>
                 {new Date(travel.stop_time).toLocaleString("sv-SE", {
                   dateStyle: "medium",
                   timeStyle: "short",
@@ -38,27 +38,27 @@ const TravelModal = (props) => {
             </tr>
             <tr>
               <th scope="col">Startkoordinater</th>
-              <td scope="col">
+              <td>
                 {travel.start_coordinates.lat}, {travel.start_coordinates.long}
               </td>
             </tr>
             <tr>
               <th scope="col">Slutkoordinater</th>
-              <td scope="col">
+              <td>
                 {travel.stop_coordinates.lat}, {travel.stop_coordinates.long}
               </td>
             </tr>
             <tr>
               <th scope="col">Genomsnittlig hastighet</th>
-              <td scope="col">{travel.average_speed} km/h</td>
+              <td>{travel.average_speed} km/h</td>
             </tr>
             <tr>
               <th scope="col">Distans</th>
-              <td scope="col">{travel.distance} km</td>
+              <td>{travel.distance} km</td>
             </tr>
             <tr>
               <th scope="col">Kostnad</th>
-              <td scope="col">{travel.price} SEK</td>
+              <td>{travel.price} SEK</td>
             </tr>
           </tbody>
         </table>

@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { GoogleLogin } from "react-google-login";
-import { Button } from "reactstrap";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Auth = (props) => {
   const { login } = props;
   const [error, setError] = useState();
   const [loading, setLoading] = useState();
-  const [success, setSuccess] = useState();
 
   const responseGoogleSuccess = async (response) => {
     try {
@@ -24,58 +23,16 @@ const Auth = (props) => {
       if (!res.ok) {
         throw new Error(data.message);
       }
-      setSuccess(true);
       setLoading(false);
       login(data.userId, data.userEmail, data.token);
     } catch (err) {
-      setError(err.message);
+      setError(true);
       setLoading(false);
     }
   };
   const responseGoogleError = (response) => {
-    // console.log(response);
-    setError(response.message);
+    setError(true);
   };
-
-  // const login = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       `${process.env.REACT_APP_BACKEND_URL}/auth/google`,
-  //       {
-  //         method: "GET",
-  //         // mode: "no-cors", // no-cors, *cors, same-origin
-
-  //         headers: {
-  //           Accept: "application/json",
-  //           "Content-Type": "application/json",
-  //           // Authorization: "Bearer " + context.token,
-  //         },
-  //         // body: JSON.stringify({}),
-  //       }
-  //     );
-  //     console.log(response);
-  //     const data = await response.json();
-  //     if (!response.ok) {
-  //       throw new Error(data.message);
-  //     }
-  //     console.log(data);
-  //     setSuccess(true);
-  //     setLoading(false);
-  //   } catch (err) {
-  //     setError(err.message);
-  //     setLoading(false);
-  //   }
-  // };
-
-  // const loginWithGoogle = () => {
-  //   // ev.preventDefault();
-  //   window.open("http://localhost:1337/auth/google", "_self");
-  // };
-
-  // const logoutWithGoogle = () => {
-  //   // ev.preventDefault();
-  //   window.open("http://localhost:1337/auth/logout", "_self");
-  // };
 
   return (
     <div>
@@ -87,8 +44,19 @@ const Auth = (props) => {
         cookiePolicy={"single_host_origin"}
         isSignedIn={false}
       />
-      {/* <Button onClick={loginWithGoogle}>Logga in</Button>
-      <Button onClick={logoutWithGoogle}>Logga ut</Button> */}
+      {loading && (
+        <ClipLoader
+          color={"#fffff"}
+          loading={loading}
+          // css={override}
+          size={20}
+        />
+      )}
+      {error && (
+        <p className="text-danger">
+          Inloggning misslyckades. Försök igen senare.
+        </p>
+      )}
     </div>
   );
 };

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "reactstrap";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const City = (props) => {
-  // const cityId = "61a7603dbb53f131584de9b3";
-
   const [selectedCity, setSelectedCity] = useState();
   const [cities, setCities] = useState();
   const [error, setError] = useState(null);
@@ -15,7 +14,6 @@ const City = (props) => {
     setError(null);
     setLoading(true);
     setSuccess(false);
-    console.log([{ propName: "city", value: selectedCity }]);
     try {
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/users/${props.userId}`,
@@ -29,7 +27,6 @@ const City = (props) => {
           body: JSON.stringify([{ propName: "city", value: selectedCity }]),
         }
       );
-      // console.log("data");
       const data = await response.json();
 
       if (!response.ok) {
@@ -38,7 +35,7 @@ const City = (props) => {
       setSuccess(true);
       setLoading(false);
     } catch (err) {
-      setError(err.message);
+      setError(true);
       setLoading(false);
     }
   };
@@ -67,7 +64,7 @@ const City = (props) => {
         setCities(data.cities);
         setLoading(false);
       } catch (err) {
-        setError(err.message);
+        setError(true);
         setLoading(false);
       }
     };
@@ -96,16 +93,18 @@ const City = (props) => {
         setSelectedCity(data.city._id);
         setLoading(false);
       } catch (err) {
-        setError(err.message);
+        setError(true);
         setLoading(false);
       }
     };
-    getCurrentCity();
-  }, []);
+    props.currentCity === "unknown"
+      ? setSelectedCity("61a7603dbb53f131584de9b3")
+      : getCurrentCity();
+  }, [props.currentCity]);
 
   return (
     <>
-      <h4>Stad</h4>
+      <h4 className="mt-3">Stad</h4>
       <form onSubmit={saveHandler}>
         <select
           className="form-select"
@@ -120,7 +119,21 @@ const City = (props) => {
               </option>
             ))}
         </select>
-        <Button>Spara</Button>
+        <Button className="mt-2 mb-2">
+          Spara{" "}
+          {loading && (
+            <ClipLoader
+              color={"#fffff"}
+              loading={loading}
+              // css={override}
+              size={20}
+            />
+          )}
+        </Button>
+        {success && <p className="text-success">Stad sparad.</p>}
+        {error && (
+          <p className="text-danger">Ett fel uppstod. Försök igen senare.</p>
+        )}
       </form>
     </>
   );

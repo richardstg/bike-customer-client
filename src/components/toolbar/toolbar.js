@@ -8,15 +8,9 @@ const Toolbar = (props) => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light p-4 text-decoration-none">
       {isAuthenticated && (
         <>
-          {/* <Link to="/" className="text-decoration-none">
-            <span className="m-3 text-dark text-decoration-none">Home</span>
+          <Link to="/" className="text-decoration-none">
+            <span className="m-3 text-dark text-decoration-none">Hem</span>
           </Link>
-          <Link to="/texts" className="text-decoration-none">
-            <span className="m-3 text-dark">Texts</span>
-          </Link>
-          <Link to="/about" className="text-decoration-none">
-            <span className="m-3 text-dark">About</span>
-          </Link> */}
           <button className="btn btn-secondary" onClick={logout}>
             Logga ut
           </button>

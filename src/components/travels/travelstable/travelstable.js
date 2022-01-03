@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
+import { Button } from "reactstrap";
 
 const TravelsTable = (props) => {
   const { travels, setTravel, setShowModal } = props;

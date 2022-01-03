@@ -26,7 +26,7 @@ const Home = (props) => {
         }
         setUser(data.user);
       } catch (error) {
-        setUserError(error.message);
+        setUserError(true);
       }
     };
     props.userId && fetchData();
@@ -40,6 +40,9 @@ const Home = (props) => {
           <Payment user={user} setUser={setUser} />
           <City userId={user._id} currentCity={user.city} />
         </>
+      )}
+      {userError && (
+        <p className="text-danger">Ett fel uppstod. Försök igen senare.</p>
       )}
     </>
   );

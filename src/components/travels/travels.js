@@ -1,6 +1,7 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import TravelModal from "./travelmodal/travelmodal";
 import TravelsTable from "./travelstable/travelstable";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Travels = (props) => {
   const [showModal, setShowModal] = useState(false);
@@ -11,36 +12,35 @@ const Travels = (props) => {
 
   const { userId } = props;
 
-  const getTravels = async () => {
-    setError(null);
-    setLoading(true);
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/trips/user/${userId}`,
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            // Authorization: "Bearer " + context.token,
-          },
-          // body: JSON.stringify({ name, content, code: codeMode }),
-        }
-      );
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message);
-      }
-      setTravels(data.trips);
-      setLoading(false);
-    } catch (err) {
-      setError(err.message);
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const getTravels = async () => {
+      setError(null);
+      setLoading(true);
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/trips/user/${userId}`,
+          {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              // Authorization: "Bearer " + context.token,
+            },
+            // body: JSON.stringify({ name, content, code: codeMode }),
+          }
+        );
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message);
+        }
+        setTravels(data.trips);
+        setLoading(false);
+      } catch (err) {
+        setError(true);
+        setLoading(false);
+      }
+    };
     getTravels();
   }, []);
 
@@ -59,6 +59,19 @@ const Travels = (props) => {
           travel={travel}
           showModal={showModal}
           setShowModal={setShowModal}
+        />
+      )}
+      {error && (
+        <p className="text-danger">
+          Resor kunde inte hämtas. Försök igen senare.
+        </p>
+      )}
+      {loading && (
+        <ClipLoader
+          color={"#fffff"}
+          loading={loading}
+          // css={override}
+          size={20}
         />
       )}
     </>

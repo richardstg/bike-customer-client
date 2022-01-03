@@ -44,7 +44,7 @@ const ChangePayment = (props) => {
       setLoading(false);
       setSuccess(true);
     } catch (err) {
-      setError(err.message);
+      setError(true);
       setLoading(false);
     }
   };
