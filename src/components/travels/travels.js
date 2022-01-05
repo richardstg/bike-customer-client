@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import TravelModal from "./travelmodal/travelmodal";
 import TravelsTable from "./travelstable/travelstable";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -42,11 +42,10 @@ const Travels = (props) => {
       }
     };
     getTravels();
-  }, []);
+  }, [userId]);
 
   return (
     <>
-      <h4 className="mt-3 mb-3">Resehistorik</h4>
       {travels && travels.length > 0 && (
         <TravelsTable
           travels={travels}

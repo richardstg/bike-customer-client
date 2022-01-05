@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Row, Col } from "reactstrap";
 import City from "../components/city/city";
 import Payment from "../components/payment/payment";
 import Travels from "../components/travels/travels";
@@ -37,8 +38,14 @@ const Home = (props) => {
       {user && (
         <>
           <Travels userId={user._id} />
-          <Payment user={user} setUser={setUser} />
-          <City userId={user._id} currentCity={user.city} />
+          <Row>
+            <Col lg={6} xs={12}>
+              <Payment user={user} setUser={setUser} />
+            </Col>
+            <Col lg={6} xs={12}>
+              <City userId={user._id} currentCity={user.city} />
+            </Col>
+          </Row>
         </>
       )}
       {userError && (

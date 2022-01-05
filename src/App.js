@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -13,55 +13,6 @@ import { useAuth } from "./hooks/authhook";
 
 const App = () => {
   const { token, login, logout, userId } = useAuth();
-
-  useEffect(() => {
-    // const authenticate = async () => {
-    //   try {
-    //     const response = await fetch(
-    //       `${process.env.REACT_APP_BACKEND_URL}/users/${uId}`,
-    //       {
-    //         method: "GET",
-    //         // headers: {
-    //         //   Authorization: "Bearer " + token,
-    //         // },
-    //       }
-    //     );
-    //     const data = await response.json();
-    //     if (!response.ok) {
-    //       throw new Error(data.message);
-    //     }
-    //     setUser(data.user);
-    //   } catch (error) {
-    //     setUserError(error.message);
-    //   }
-    // };
-    // authenticate();
-    //   const authenticate = () => {
-    //     fetch("http://localhost:1337/auth/login/success", {
-    //       method: "GET",
-    //       credentials: "include",
-    //       headers: {
-    //         Accept: "application/json",
-    //         "Content-Type": "application/json",
-    //         "Access-Control-Allow-Credentials": true,
-    //       },
-    //     })
-    //       .then((response) => {
-    //         console.log(response);
-    //         if (response.status === 200) return response.json();
-    //         throw new Error("authentication has been failed!");
-    //       })
-    //       .then((resObject) => {
-    //         console.log(resObject);
-    //         setToken(resObject.token);
-    //         setUser(resObject.user);
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-    //   };
-    //   authenticate();
-  }, []);
 
   const authorizedRoutes = (
     <Switch>

@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { GoogleLogin } from "react-google-login";
-import ClipLoader from "react-spinners/ClipLoader";
 
 const Auth = (props) => {
   const { login } = props;
   const [error, setError] = useState();
-  const [loading, setLoading] = useState();
 
   const responseGoogleSuccess = async (response) => {
     try {
@@ -23,19 +21,17 @@ const Auth = (props) => {
       if (!res.ok) {
         throw new Error(data.message);
       }
-      setLoading(false);
       login(data.userId, data.userEmail, data.token);
     } catch (err) {
-      setError(true);
-      setLoading(false);
+      setError(err.message);
     }
   };
   const responseGoogleError = (response) => {
-    setError(true);
+    setError(response.message);
   };
 
   return (
-    <div>
+    <>
       <GoogleLogin
         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
         buttonText="Logga in"
@@ -44,20 +40,8 @@ const Auth = (props) => {
         cookiePolicy={"single_host_origin"}
         isSignedIn={false}
       />
-      {loading && (
-        <ClipLoader
-          color={"#fffff"}
-          loading={loading}
-          // css={override}
-          size={20}
-        />
-      )}
-      {error && (
-        <p className="text-danger">
-          Inloggning misslyckades. Försök igen senare.
-        </p>
-      )}
-    </div>
+      {error && <p className="text-danger mt-2">{error}</p>}
+    </>
   );
 };
 

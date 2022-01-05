@@ -1,7 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
-import { useForm } from "react-hook-form";
-// import { AuthContext } from "../../context/authcontext";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const ChangePayment = (props) => {
   const [paymentMethod, setPaymentMethod] = useState(
@@ -43,6 +42,10 @@ const ChangePayment = (props) => {
       props.setUser(data.updatedUser);
       setLoading(false);
       setSuccess(true);
+      setTimeout(() => {
+        props.toggle();
+        setSuccess(false);
+      }, 1000);
     } catch (err) {
       setError(true);
       setLoading(false);
@@ -105,23 +108,36 @@ const ChangePayment = (props) => {
               placeholder="xxxx xxxx xxxx xxxx"
               className="form-control"
               id="cardNumber"
-              // placeholder="Skriv in kortnummer..."
               value={cardNumber}
               onChange={(event) => setCardNumber(event.target.value)}
             />
           </div>
-          {success && <p className="text-success">Info uppdaterad.</p>}
+          {success && <p className="text-success mt-2">Info uppdaterad.</p>}
           {error && (
-            <p className="text-danger">
+            <p className="text-danger mt-2">
               Info kunde inte uppdateras. Försök senare igen.
             </p>
           )}
         </ModalBody>
         <ModalFooter>
-          <Button color="primary">Spara</Button>{" "}
+          <Button color="primary">
+            Spara{" "}
+            {loading && (
+              <ClipLoader
+                color={"#fffff"}
+                loading={loading}
+                // css={override}
+                size={20}
+              />
+            )}
+          </Button>{" "}
           <Button
             color="secondary"
-            onClick={props.toggle}
+            onClick={() => {
+              props.toggle();
+              setError(null);
+              setSuccess(false);
+            }}
             data-testid="close-payment-modal"
           >
             Stäng

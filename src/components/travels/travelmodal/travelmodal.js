@@ -12,7 +12,7 @@ const TravelModal = (props) => {
     >
       <ModalHeader>Reseinformation</ModalHeader>
       <ModalBody>
-        <table className="table table-striped">
+        <table className="table">
           <tbody>
             <tr>
               <th scope="col">Cykel-id</th>

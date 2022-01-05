@@ -3,7 +3,7 @@ import { Button } from "reactstrap";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const City = (props) => {
-  const [selectedCity, setSelectedCity] = useState();
+  const [selectedCity, setSelectedCity] = useState(props.currentCity);
   const [cities, setCities] = useState();
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -34,9 +34,15 @@ const City = (props) => {
       }
       setSuccess(true);
       setLoading(false);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 1000);
     } catch (err) {
       setError(true);
       setLoading(false);
+      setTimeout(() => {
+        setError(null);
+      }, 1000);
     }
   };
 
@@ -104,37 +110,43 @@ const City = (props) => {
 
   return (
     <>
-      <h4 className="mt-3">Stad</h4>
-      <form onSubmit={saveHandler}>
-        <select
-          className="form-select"
-          aria-label="Available bikes"
-          onChange={(event) => setSelectedCity(event.target.value)}
-        >
-          {cities &&
-            cities.length > 0 &&
-            cities.map((city) => (
-              <option selected={selectedCity === city._id} value={city._id}>
-                {city.name}
-              </option>
-            ))}
-        </select>
-        <Button className="mt-2 mb-2">
-          Spara{" "}
-          {loading && (
-            <ClipLoader
-              color={"#fffff"}
-              loading={loading}
-              // css={override}
-              size={20}
-            />
-          )}
-        </Button>
-        {success && <p className="text-success">Stad sparad.</p>}
-        {error && (
-          <p className="text-danger">Ett fel uppstod. Försök igen senare.</p>
-        )}
-      </form>
+      <div class="card bg-light border-light shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Stad</h5>
+          <form onSubmit={saveHandler}>
+            <select
+              className="form-select"
+              aria-label="Available bikes"
+              onChange={(event) => setSelectedCity(event.target.value)}
+            >
+              {cities &&
+                cities.length > 0 &&
+                cities.map((city) => (
+                  <option selected={selectedCity === city._id} value={city._id}>
+                    {city.name}
+                  </option>
+                ))}
+            </select>
+            <Button className="mt-2 mb-2">
+              Spara{" "}
+              {loading && (
+                <ClipLoader
+                  color={"#fffff"}
+                  loading={loading}
+                  // css={override}
+                  size={20}
+                />
+              )}
+            </Button>
+            {success && <p className="text-success">Stad sparad.</p>}
+            {error && (
+              <p className="text-danger">
+                Ett fel uppstod. Försök igen senare.
+              </p>
+            )}
+          </form>
+        </div>
+      </div>
     </>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Refill = (props) => {
   const [amount, setAmount] = useState();
@@ -25,7 +26,12 @@ const Refill = (props) => {
             "Content-Type": "application/json",
             // Authorization: "Bearer " + context.token,
           },
-          body: JSON.stringify([{ propName: "balance", value: amount }]),
+          body: JSON.stringify([
+            {
+              propName: "balance",
+              value: parseInt(amount) + props.currentBalance,
+            },
+          ]),
         }
       );
       const data = await response.json();
@@ -36,6 +42,10 @@ const Refill = (props) => {
       props.setUser(data.updatedUser);
       setLoading(false);
       setSuccess(true);
+      setTimeout(() => {
+        props.toggle();
+        setSuccess(false);
+      }, 1000);
     } catch (err) {
       setError(true);
       setLoading(false);
@@ -44,11 +54,11 @@ const Refill = (props) => {
 
   return (
     <Modal isOpen={props.isOpen} toggle={props.toggle} centered={true}>
-      <ModalHeader>Fyll på konto</ModalHeader>
-      <ModalBody>
-        <form data-testid="refill-form">
+      <form data-testid="refill-form" onSubmit={submitRefill}>
+        <ModalHeader>Fyll på konto</ModalHeader>
+        <ModalBody>
           <div className="form-group">
-            <label htmlFor="refillAmount">Ange belopp:</label>
+            <label htmlFor="refillAmount">Ange belopp (SEK):</label>
             <input
               type="number"
               className="form-control"
@@ -59,20 +69,39 @@ const Refill = (props) => {
               required
             />
           </div>
-        </form>
-      </ModalBody>
-      <ModalFooter>
-        <Button color="primary" onClick={submitRefill}>
-          Fyll på
-        </Button>{" "}
-        <Button
-          color="secondary"
-          onClick={props.toggle}
-          data-testid="refill-close"
-        >
-          Avbryt
-        </Button>
-      </ModalFooter>
+          {success && <p className="text-success mt-2 mb-0">Saldo påfyllt.</p>}
+          {error && (
+            <p className="text-danger mt-2">
+              Ett fel uppstod. Försök igen senare.
+            </p>
+          )}
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" className="mt-2 mb-2">
+            Fyll på{" "}
+            {loading && (
+              <ClipLoader
+                color={"#fffff"}
+                loading={loading}
+                // css={override}
+                size={20}
+              />
+            )}
+          </Button>{" "}
+          <Button
+            color="secondary"
+            onClick={() => {
+              props.toggle();
+              setError(null);
+              setSuccess(false);
+            }}
+            data-testid="refill-close"
+            className="mt-2 mb-2"
+          >
+            Stäng
+          </Button>
+        </ModalFooter>
+      </form>
     </Modal>
   );
 };
