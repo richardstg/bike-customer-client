@@ -14,7 +14,7 @@ const TravelModal = (props) => {
         Reseinformation
       </ModalHeader>
       <ModalBody>
-        <table className="table">
+        <table className="table" style={{ fontSize: "0.9rem" }}>
           <tbody>
             <tr>
               <th scope="col" className="font-signature color-signature">

@@ -1,16 +1,14 @@
 import React from "react";
-import { Button } from "reactstrap";
 
 const TravelsTable = (props) => {
   const { travels, setTravel, setShowModal } = props;
 
   return (
     <div class="card bg-light border-light shadow-sm mb-3">
-      {/* <h5 class="card-header">Resehistorik</h5> */}
       <div class="card-body">
         <h5 class="card-title font-signature color-signature">Resehistorik</h5>
         <div className="table-wrapper">
-          <table className="table table-hover">
+          <table className="table table-hover" style={{ fontSize: "0.95rem" }}>
             <thead className="">
               <tr className="">
                 <th scope="col" className="border-0 color-signature">
