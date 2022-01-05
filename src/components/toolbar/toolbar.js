@@ -6,18 +6,18 @@ const Toolbar = (props) => {
 
   return (
     <nav className="navbar navbar-expand-lg p-2 text-decoration-none mb-3 shadow-sm">
-      {isAuthenticated && (
-        <div className="d-flex justify-content-between w-100 container">
-          <Link to="/" className="text-decoration-none align-middle d-flex">
-            <h4 className="text-decoration-none p-2 mb-0 color-signature font-signature">
-              seab.
-            </h4>
-          </Link>
+      <div className="d-flex justify-content-between w-100 container">
+        <Link to="/" className="text-decoration-none align-middle d-flex">
+          <h4 className="text-decoration-none p-2 mb-0 color-signature font-signature">
+            seab.
+          </h4>
+        </Link>
+        {isAuthenticated && (
           <button className="button-3" onClick={logout}>
             Logga ut
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </nav>
   );
 };

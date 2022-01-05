@@ -33,7 +33,7 @@ const App = () => {
   );
 
   return (
-    <div className="App pb-5">
+    <div className="App pb-5 min-vh-100">
       <Router>
         <Toolbar logout={logout} isAuthenticated={!!token} />
         <div className="container">

@@ -31,17 +31,23 @@ const Auth = (props) => {
   };
 
   return (
-    <>
-      <GoogleLogin
-        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-        buttonText="Logga in"
-        onSuccess={responseGoogleSuccess}
-        onFailure={responseGoogleError}
-        cookiePolicy={"single_host_origin"}
-        isSignedIn={false}
-      />
-      {error && <p className="text-danger mt-2">{error}</p>}
-    </>
+    <div
+      className="d-flex flex-column justify-content-center align-items-center"
+      style={{ minHeight: "70vh" }}
+    >
+      <div>
+        <h1 className="color-signature font-signature text-center">seab.</h1>
+        <GoogleLogin
+          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+          buttonText="Logga in med Google"
+          onSuccess={responseGoogleSuccess}
+          onFailure={responseGoogleError}
+          cookiePolicy={"single_host_origin"}
+          isSignedIn={false}
+        />
+        {error && <p className="text-danger mt-2">{error}</p>}
+      </div>
+    </div>
   );
 };
 

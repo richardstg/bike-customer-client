@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "reactstrap";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const City = (props) => {

@@ -6,7 +6,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 const Travels = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [travel, setTravel] = useState();
-  const [travels, setTravels] = useState([]);
+  const [travels, setTravels] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -46,7 +46,7 @@ const Travels = (props) => {
 
   return (
     <>
-      {travels && travels.length > 0 && (
+      {travels && (
         <TravelsTable
           travels={travels}
           setTravel={setTravel}

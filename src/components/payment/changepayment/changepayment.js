@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const ChangePayment = (props) => {
