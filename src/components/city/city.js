@@ -126,7 +126,7 @@ const City = (props) => {
                   </option>
                 ))}
             </select>
-            <button className="mt-2 mb-2 button-3">
+            <button className="mt-2 mb-2 button-3 full-width">
               Spara{" "}
               {loading && (
                 <ClipLoader
