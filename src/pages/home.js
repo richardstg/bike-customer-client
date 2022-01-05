@@ -40,10 +40,10 @@ const Home = (props) => {
           <Travels userId={user._id} />
           <Row>
             <Col lg={6} xs={12}>
-              <Payment user={user} setUser={setUser} />
+              <City userId={user._id} currentCity={user.city} />
             </Col>
             <Col lg={6} xs={12}>
-              <City userId={user._id} currentCity={user.city} />
+              <Payment user={user} setUser={setUser} />
             </Col>
           </Row>
         </>

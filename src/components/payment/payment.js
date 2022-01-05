@@ -10,9 +10,11 @@ const Payment = (props) => {
 
   return (
     <>
-      <div class="card bg-light border-light shadow-sm">
+      <div class="card bg-light border-light shadow-sm mb-3">
         <div class="card-body">
-          <h5 class="card-title">Betalningsmetod</h5>
+          <h5 class="card-title font-signature color-signature">
+            Betalningsmetod
+          </h5>
           {/* <h5 className="mt-3 mb-3 card-title">Betalningsmetod</h5> */}
           {user.payment_method !== "unknown" ? (
             <>

@@ -58,41 +58,45 @@ const ChangePayment = (props) => {
 
   return (
     <Modal isOpen={props.isOpen} toggle={props.toggle} centered={true}>
-      <ModalHeader>{props.title}</ModalHeader>
+      <ModalHeader className="font-signature color-signature">
+        {props.title}
+      </ModalHeader>
       <form onSubmit={submitChanges} data-testid="change-payment-form">
         <ModalBody>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="paymentMethod"
-              id="radioRefill"
-              data-testid="radio-refill"
-              value="refill"
-              checked={
-                paymentMethod === "refill" || paymentMethod === "unknown"
-              }
-              onChange={(event) => setPaymentMethod(event.target.value)}
-            />
-            <label className="form-check-label" htmlFor="radioRefill">
-              Påfyllning
-            </label>
-          </div>
-          <div className="form-check">
-            <input
-              required={true}
-              className="form-check-input"
-              type="radio"
-              name="paymentMethod"
-              id="radioMonthly"
-              data-testid="radio-monthly"
-              value="monthly"
-              checked={paymentMethod === "monthly"}
-              onChange={(event) => setPaymentMethod(event.target.value)}
-            />
-            <label className="form-check-label" htmlFor="radioMonthly">
-              Månadsvis
-            </label>
+          <div className="mb-2">
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="paymentMethod"
+                id="radioRefill"
+                data-testid="radio-refill"
+                value="refill"
+                checked={
+                  paymentMethod === "refill" || paymentMethod === "unknown"
+                }
+                onChange={(event) => setPaymentMethod(event.target.value)}
+              />
+              <label className="form-check-label" htmlFor="radioRefill">
+                Påfyllning
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                required={true}
+                className="form-check-input"
+                type="radio"
+                name="paymentMethod"
+                id="radioMonthly"
+                data-testid="radio-monthly"
+                value="monthly"
+                checked={paymentMethod === "monthly"}
+                onChange={(event) => setPaymentMethod(event.target.value)}
+              />
+              <label className="form-check-label" htmlFor="radioMonthly">
+                Månadsvis
+              </label>
+            </div>
           </div>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">
@@ -120,7 +124,7 @@ const ChangePayment = (props) => {
           )}
         </ModalBody>
         <ModalFooter>
-          <Button color="primary">
+          <button className="button-3">
             Spara{" "}
             {loading && (
               <ClipLoader
@@ -130,9 +134,9 @@ const ChangePayment = (props) => {
                 size={20}
               />
             )}
-          </Button>{" "}
-          <Button
-            color="secondary"
+          </button>{" "}
+          <button
+            className="button-4"
             onClick={() => {
               props.toggle();
               setError(null);
@@ -141,7 +145,7 @@ const ChangePayment = (props) => {
             data-testid="close-payment-modal"
           >
             Stäng
-          </Button>
+          </button>
         </ModalFooter>
       </form>
     </Modal>

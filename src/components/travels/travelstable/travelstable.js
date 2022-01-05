@@ -8,18 +8,18 @@ const TravelsTable = (props) => {
     <div class="card bg-light border-light shadow-sm mb-3">
       {/* <h5 class="card-header">Resehistorik</h5> */}
       <div class="card-body">
-        <h5 class="card-title">Resehistorik</h5>
+        <h5 class="card-title font-signature color-signature">Resehistorik</h5>
         <div className="table-wrapper">
           <table className="table table-hover">
             <thead className="">
               <tr className="">
-                <th scope="col" className="border-0">
+                <th scope="col" className="border-0 color-signature">
                   Starttid
                 </th>
-                <th scope="col" className="border-0">
+                <th scope="col" className="border-0 color-signature">
                   Sluttid
                 </th>
-                <th scope="col" className="border-0"></th>
+                <th scope="col" className="border-0 color-signature"></th>
               </tr>
             </thead>
             <tbody>
@@ -40,15 +40,15 @@ const TravelsTable = (props) => {
                       })}
                     </td>
                     <td className="align-middle">
-                      <Button
-                        color="secondary"
+                      <button
+                        className="button-3"
                         onClick={() => {
                           setTravel(travel);
                           setShowModal(true);
                         }}
                       >
                         Visa
-                      </Button>
+                      </button>
                     </td>
                   </tr>
                 ))}

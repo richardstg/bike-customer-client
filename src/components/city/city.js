@@ -110,9 +110,9 @@ const City = (props) => {
 
   return (
     <>
-      <div class="card bg-light border-light shadow-sm">
+      <div class="card bg-light border-light shadow-sm mb-3">
         <div class="card-body">
-          <h5 class="card-title">Stad</h5>
+          <h5 class="card-title font-signature color-signature">Stad</h5>
           <form onSubmit={saveHandler}>
             <select
               className="form-select"
@@ -127,7 +127,7 @@ const City = (props) => {
                   </option>
                 ))}
             </select>
-            <Button className="mt-2 mb-2">
+            <button className="mt-2 mb-2 button-3">
               Spara{" "}
               {loading && (
                 <ClipLoader
@@ -137,7 +137,7 @@ const City = (props) => {
                   size={20}
                 />
               )}
-            </Button>
+            </button>
             {success && <p className="text-success">Stad sparad.</p>}
             {error && (
               <p className="text-danger">

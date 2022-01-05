@@ -10,16 +10,22 @@ const TravelModal = (props) => {
       toggle={() => setShowModal((state) => !state)}
       centered={true}
     >
-      <ModalHeader>Reseinformation</ModalHeader>
+      <ModalHeader className="font-signature color-signature">
+        Reseinformation
+      </ModalHeader>
       <ModalBody>
         <table className="table">
           <tbody>
             <tr>
-              <th scope="col">Cykel-id</th>
+              <th scope="col" className="font-signature color-signature">
+                Cykel-id
+              </th>
               <td>{travel.bike_id}</td>
             </tr>
             <tr>
-              <th scope="col">Starttid</th>
+              <th scope="col" className="font-signature color-signature">
+                Starttid
+              </th>
               <td>
                 {new Date(travel.start_time).toLocaleString("sv-SE", {
                   dateStyle: "medium",
@@ -28,7 +34,9 @@ const TravelModal = (props) => {
               </td>
             </tr>
             <tr>
-              <th scope="col">Sluttid</th>
+              <th scope="col" className="font-signature color-signature">
+                Sluttid
+              </th>
               <td>
                 {new Date(travel.stop_time).toLocaleString("sv-SE", {
                   dateStyle: "medium",
@@ -37,36 +45,46 @@ const TravelModal = (props) => {
               </td>
             </tr>
             <tr>
-              <th scope="col">Startkoordinater</th>
+              <th scope="col" className="font-signature color-signature">
+                Startkoordinater
+              </th>
               <td>
                 {travel.start_coordinates.lat}, {travel.start_coordinates.long}
               </td>
             </tr>
             <tr>
-              <th scope="col">Slutkoordinater</th>
+              <th scope="col" className="font-signature color-signature">
+                Slutkoordinater
+              </th>
               <td>
                 {travel.stop_coordinates.lat}, {travel.stop_coordinates.long}
               </td>
             </tr>
             <tr>
-              <th scope="col">Genomsnittlig hastighet</th>
+              <th scope="col" className="font-signature color-signature">
+                Genomsnittlig hastighet
+              </th>
               <td>{travel.average_speed} km/h</td>
             </tr>
             <tr>
-              <th scope="col">Distans</th>
+              <th scope="col" className="font-signature color-signature">
+                Distans
+              </th>
               <td>{travel.distance} km</td>
             </tr>
             <tr>
-              <th scope="col">Kostnad</th>
+              <th scope="col" className="font-signature color-signature">
+                Kostnad
+              </th>
               <td>{travel.price} SEK</td>
             </tr>
           </tbody>
         </table>
       </ModalBody>
       <ModalFooter>
-        <Button color="secondary" onClick={() => setShowModal(false)}>
+        <button className="button-3" onClick={() => setShowModal(false)}>
           Stäng
-        </Button>
+        </button>
       </ModalFooter>
     </Modal>
   );

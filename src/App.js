@@ -33,10 +33,12 @@ const App = () => {
   );
 
   return (
-    <div className="App container pb-5">
+    <div className="App pb-5">
       <Router>
         <Toolbar logout={logout} isAuthenticated={!!token} />
-        {token ? authorizedRoutes : unauthorizedRoutes}
+        <div className="container">
+          {token ? authorizedRoutes : unauthorizedRoutes}
+        </div>
       </Router>
     </div>
   );
