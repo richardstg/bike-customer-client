@@ -26,7 +26,7 @@ const ChangePayment = (props) => {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            // Authorization: "Bearer " + context.token,
+            headers: { "x-access-token": props.token },
           },
           body: JSON.stringify([
             { propName: "payment_method", value: paymentMethod },
@@ -51,10 +51,6 @@ const ChangePayment = (props) => {
       setLoading(false);
     }
   };
-
-  // useEffect(() => {
-  //   setCardNumber(props.cardNumber);
-  // }, [props.cardNumber]);
 
   return (
     <Modal isOpen={props.isOpen} toggle={props.toggle} centered={true}>
@@ -127,12 +123,7 @@ const ChangePayment = (props) => {
           <button className="button-3">
             Spara{" "}
             {loading && (
-              <ClipLoader
-                color={"#fffff"}
-                loading={loading}
-                // css={override}
-                size={20}
-              />
+              <ClipLoader color={"#fffff"} loading={loading} size={20} />
             )}
           </button>{" "}
           <button

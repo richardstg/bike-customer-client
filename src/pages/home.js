@@ -15,9 +15,7 @@ const Home = (props) => {
           `${process.env.REACT_APP_BACKEND_URL}/users/${props.userId}`,
           {
             method: "GET",
-            // headers: {
-            //   Authorization: "Bearer " + props.token,
-            // },
+            headers: { "x-access-token": props.token },
           }
         );
         const data = await response.json();
@@ -37,13 +35,17 @@ const Home = (props) => {
     <>
       {user && (
         <>
-          <Travels userId={user._id} />
+          <Travels userId={user._id} token={props.token} />
           <Row>
             <Col lg={6} xs={12}>
-              <City userId={user._id} currentCity={user.city} />
+              <City
+                userId={user._id}
+                currentCity={user.city}
+                token={props.token}
+              />
             </Col>
             <Col lg={6} xs={12}>
-              <Payment user={user} setUser={setUser} />
+              <Payment user={user} setUser={setUser} token={props.token} />
             </Col>
           </Row>
         </>

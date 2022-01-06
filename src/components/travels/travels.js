@@ -10,7 +10,7 @@ const Travels = (props) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const { userId } = props;
+  const { userId, token } = props;
 
   useEffect(() => {
     const getTravels = async () => {
@@ -24,9 +24,8 @@ const Travels = (props) => {
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
-              // Authorization: "Bearer " + context.token,
+              headers: { "x-access-token": token },
             },
-            // body: JSON.stringify({ name, content, code: codeMode }),
           }
         );
         const data = await response.json();

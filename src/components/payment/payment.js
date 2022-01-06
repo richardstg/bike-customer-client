@@ -6,7 +6,7 @@ const Payment = (props) => {
   const [changePayment, setChangePayment] = useState(false);
   const [refill, setRefill] = useState(false);
 
-  const { user, setUser } = props;
+  const { user, setUser, token } = props;
 
   return (
     <>
@@ -15,7 +15,6 @@ const Payment = (props) => {
           <h5 class="card-title font-signature color-signature">
             Betalningsmetod
           </h5>
-          {/* <h5 className="mt-3 mb-3 card-title">Betalningsmetod</h5> */}
           {user.payment_method !== "unknown" ? (
             <>
               <p className="mb-1">
@@ -56,6 +55,7 @@ const Payment = (props) => {
                 cardNumber={user.card_information}
                 toggle={() => setChangePayment(false)}
                 setUser={setUser}
+                token={token}
               />
               <Refill
                 balance={user.balance}
@@ -64,6 +64,7 @@ const Payment = (props) => {
                 userId={user._id}
                 currentBalance={user.balance}
                 setUser={setUser}
+                token={token}
               />
             </>
           ) : (
@@ -83,7 +84,6 @@ const Payment = (props) => {
           )}
         </div>
       </div>
-
       <ChangePayment
         title={"Betalningsmetod"}
         isOpen={changePayment}
@@ -93,6 +93,7 @@ const Payment = (props) => {
         cardNumber={user.card_information}
         toggle={() => setChangePayment(false)}
         setUser={setUser}
+        token={token}
       />
     </>
   );
