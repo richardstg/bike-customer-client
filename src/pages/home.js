@@ -3,6 +3,7 @@ import { Row, Col } from "reactstrap";
 import City from "../components/city/city";
 import Payment from "../components/payment/payment";
 import Travels from "../components/travels/travels";
+import PropTypes from "prop-types";
 
 const Home = (props) => {
   const [user, setUser] = useState();
@@ -55,6 +56,11 @@ const Home = (props) => {
       )}
     </>
   );
+};
+
+Home.propTypes = {
+  userId: PropTypes.string,
+  token: PropTypes.string,
 };
 
 export default Home;

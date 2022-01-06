@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import PropTypes from "prop-types";
 
 const TravelModal = (props) => {
   const { travel, setShowModal, showModal } = props;
@@ -94,6 +95,27 @@ const TravelModal = (props) => {
       </ModalFooter>
     </Modal>
   );
+};
+
+TravelModal.propTypes = {
+  travel: {
+    bike_id: PropTypes.string,
+    start_time: PropTypes.string,
+    stop_time: PropTypes.string,
+    distance: PropTypes.string,
+    price: PropTypes.string,
+    average_speed: PropTypes.string,
+    start_coordinates: {
+      lat: PropTypes.string,
+      long: PropTypes.string,
+    },
+    stop_coordinates: {
+      lat: PropTypes.string,
+      long: PropTypes.string,
+    },
+  },
+  showModal: PropTypes.bool,
+  setShowModal: PropTypes.func,
 };
 
 export default TravelModal;

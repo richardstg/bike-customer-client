@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
 import ClipLoader from "react-spinners/ClipLoader";
+import PropTypes from "prop-types";
 
 const Refill = (props) => {
   const [amount, setAmount] = useState();
@@ -80,12 +81,7 @@ const Refill = (props) => {
           <Button color="primary" className="mt-2 mb-2">
             Fyll på{" "}
             {loading && (
-              <ClipLoader
-                color={"#fffff"}
-                loading={loading}
-                // css={override}
-                size={20}
-              />
+              <ClipLoader color={"#fffff"} loading={loading} size={20} />
             )}
           </Button>{" "}
           <Button
@@ -104,6 +100,15 @@ const Refill = (props) => {
       </form>
     </Modal>
   );
+};
+
+Refill.propTypes = {
+  userId: PropTypes.string,
+  token: PropTypes.string,
+  currentBalance: PropTypes.number,
+  isOpen: PropTypes.bool,
+  setUser: PropTypes.func,
+  toggle: PropTypes.func,
 };
 
 export default Refill;

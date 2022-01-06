@@ -1,12 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const TravelsTable = (props) => {
   const { travels, setTravel, setShowModal } = props;
 
   return (
-    <div class="card bg-light border-light shadow-sm mb-3">
-      <div class="card-body">
-        <h5 class="card-title font-signature color-signature">Resehistorik</h5>
+    <div className="card bg-light border-light shadow-sm mb-3">
+      <div className="card-body">
+        <h5 className="card-title font-signature color-signature">
+          Resehistorik
+        </h5>
         {travels && travels.length > 0 && (
           <div className="table-wrapper">
             <table
@@ -60,6 +63,29 @@ const TravelsTable = (props) => {
       </div>
     </div>
   );
+};
+
+TravelsTable.propTypes = {
+  travels: [
+    {
+      bike_id: PropTypes.string,
+      start_time: PropTypes.string,
+      stop_time: PropTypes.string,
+      distance: PropTypes.string,
+      price: PropTypes.string,
+      average_speed: PropTypes.string,
+      start_coordinates: {
+        lat: PropTypes.string,
+        long: PropTypes.string,
+      },
+      stop_coordinates: {
+        lat: PropTypes.string,
+        long: PropTypes.string,
+      },
+    },
+  ],
+  setTravel: PropTypes.func,
+  setShowModal: PropTypes.func,
 };
 
 export default TravelsTable;

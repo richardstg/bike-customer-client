@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import TravelModal from "./travelmodal/travelmodal";
 import TravelsTable from "./travelstable/travelstable";
 import ClipLoader from "react-spinners/ClipLoader";
+import PropTypes from "prop-types";
 
 const Travels = (props) => {
   const [showModal, setShowModal] = useState(false);
@@ -74,6 +75,11 @@ const Travels = (props) => {
       )}
     </>
   );
+};
+
+Travels.propTypes = {
+  userId: PropTypes.string,
+  token: PropTypes.string,
 };
 
 export default Travels;

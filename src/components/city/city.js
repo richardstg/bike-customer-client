@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
+import PropTypes from "prop-types";
 
 const City = (props) => {
   const [selectedCity, setSelectedCity] = useState(props.currentCity);
@@ -121,7 +122,11 @@ const City = (props) => {
               {cities &&
                 cities.length > 0 &&
                 cities.map((city) => (
-                  <option selected={selectedCity === city._id} value={city._id}>
+                  <option
+                    key={city._id}
+                    selected={selectedCity === city._id}
+                    value={city._id}
+                  >
                     {city.name}
                   </option>
                 ))}
@@ -148,6 +153,12 @@ const City = (props) => {
       </div>
     </>
   );
+};
+
+City.propTypes = {
+  currentCity: PropTypes.string,
+  userId: PropTypes.string,
+  token: PropTypes.string,
 };
 
 export default City;

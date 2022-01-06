@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import ClipLoader from "react-spinners/ClipLoader";
+import PropTypes from "prop-types";
 
 const ChangePayment = (props) => {
   const [paymentMethod, setPaymentMethod] = useState(
@@ -141,6 +142,17 @@ const ChangePayment = (props) => {
       </form>
     </Modal>
   );
+};
+
+ChangePayment.propTypes = {
+  currentMethod: PropTypes.string,
+  cardNumber: PropTypes.string,
+  userId: PropTypes.string,
+  title: PropTypes.string,
+  token: PropTypes.string,
+  isOpen: PropTypes.bool,
+  setUser: PropTypes.func,
+  toggle: PropTypes.func,
 };
 
 export default ChangePayment;

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ChangePayment from "./changepayment/changepayment";
 import Refill from "./refill/refill";
+import PropTypes from "prop-types";
 
 const Payment = (props) => {
   const [changePayment, setChangePayment] = useState(false);
@@ -10,9 +11,9 @@ const Payment = (props) => {
 
   return (
     <>
-      <div class="card bg-light border-light shadow-sm mb-3">
-        <div class="card-body">
-          <h5 class="card-title font-signature color-signature">
+      <div className="card bg-light border-light shadow-sm mb-3">
+        <div className="card-body">
+          <h5 className="card-title font-signature color-signature">
             Betalningsmetod
           </h5>
           {user.payment_method !== "unknown" ? (
@@ -97,6 +98,12 @@ const Payment = (props) => {
       />
     </>
   );
+};
+
+Payment.propTypes = {
+  user: PropTypes.string,
+  token: PropTypes.string,
+  setUser: PropTypes.func,
 };
 
 export default Payment;

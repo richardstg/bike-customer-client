@@ -19,7 +19,7 @@ const App = () => {
       <Route
         exact
         path="/"
-        render={(props) => <Home userId={userId} token={token} />}
+        render={() => <Home userId={userId} token={token} />}
       />
       <Redirect to="/" />
     </Switch>
@@ -27,7 +27,7 @@ const App = () => {
 
   const unauthorizedRoutes = (
     <Switch>
-      <Route path="/" exact render={(props) => <Auth login={login} />} />
+      <Route path="/" exact render={() => <Auth login={login} />} />
       <Redirect to="/" />
     </Switch>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { GoogleLogin } from "react-google-login";
+import PropTypes from "prop-types";
 
 const Auth = (props) => {
   const { login } = props;
@@ -51,6 +52,10 @@ const Auth = (props) => {
       </div>
     </div>
   );
+};
+
+Auth.propTypes = {
+  login: PropTypes.func,
 };
 
 export default Auth;
