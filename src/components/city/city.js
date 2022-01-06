@@ -109,9 +109,9 @@ const City = (props) => {
 
   return (
     <>
-      <div class="card bg-light border-light shadow-sm mb-3">
-        <div class="card-body">
-          <h5 class="card-title font-signature color-signature">Stad</h5>
+      <div className="card bg-light border-light shadow-sm mb-3">
+        <div className="card-body">
+          <h5 className="card-title font-signature color-signature">Stad</h5>
           <form onSubmit={saveHandler}>
             <select
               className="form-select"

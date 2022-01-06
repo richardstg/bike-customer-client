@@ -2,7 +2,7 @@
 [![Build Status](https://scrutinizer-ci.com/g/richardstg/bike-customer-client/badges/build.png?b=main)](https://scrutinizer-ci.com/g/richardstg/bike-customer-client/build-status/main)
 [![Build Status](https://app.travis-ci.com/richardstg/bike-customer-client.svg?branch=main)](https://app.travis-ci.com/richardstg/bike-customer-client)
 
-# Customer Interface for Scooter Sharing Application
+# Customer Interface for Scooter Sharing Service
 
 This application is part of a larger development project in the course "pattern" at BTH.
 
