@@ -98,22 +98,7 @@ const TravelModal = (props) => {
 };
 
 TravelModal.propTypes = {
-  travel: {
-    bike_id: PropTypes.string,
-    start_time: PropTypes.string,
-    stop_time: PropTypes.string,
-    distance: PropTypes.string,
-    price: PropTypes.string,
-    average_speed: PropTypes.string,
-    start_coordinates: {
-      lat: PropTypes.string,
-      long: PropTypes.string,
-    },
-    stop_coordinates: {
-      lat: PropTypes.string,
-      long: PropTypes.string,
-    },
-  },
+  travel: PropTypes.object,
   showModal: PropTypes.bool,
   setShowModal: PropTypes.func,
 };
