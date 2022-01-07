@@ -70,7 +70,7 @@ const Payment = (props) => {
             </>
           ) : (
             <>
-              <p>Ingen nuvarande betalningsmetod.</p>
+              <p className="mb-1">Ingen nuvarande betalningsmetod.</p>
               <a
                 data-testid="add-method-link"
                 href="!#"
