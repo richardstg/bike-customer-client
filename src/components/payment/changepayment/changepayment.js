@@ -113,9 +113,9 @@ const ChangePayment = (props) => {
               onChange={(event) => setCardNumber(event.target.value)}
             />
           </div>
-          {success && <p className="text-success mt-2">Info uppdaterad.</p>}
+          {success && <p className="text-success mb-0">Info uppdaterad.</p>}
           {error && (
-            <p className="text-danger mt-2">
+            <p className="text-danger mb-0">
               Info kunde inte uppdateras. Försök senare igen.
             </p>
           )}

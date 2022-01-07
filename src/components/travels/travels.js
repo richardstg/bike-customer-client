@@ -65,14 +65,7 @@ const Travels = (props) => {
           Resor kunde inte hämtas. Försök igen senare.
         </p>
       )}
-      {loading && (
-        <ClipLoader
-          color={"#fffff"}
-          loading={loading}
-          // css={override}
-          size={20}
-        />
-      )}
+      {loading && <ClipLoader color={"#298E46"} loading={loading} size={40} />}
     </>
   );
 };

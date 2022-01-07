@@ -24,17 +24,19 @@ const Payment = (props) => {
               </p>
               {user.payment_method === "refill" && (
                 <div>
-                  <p>Saldo: {user.balance} SEK</p>
-                  <a
-                    data-testid="refill-link"
-                    href="!#"
-                    onClick={(event) => {
-                      event.preventDefault();
-                      setRefill(true);
-                    }}
-                  >
-                    Fyll på saldo
-                  </a>
+                  <p className="mb-1">Saldo: {user.balance} SEK</p>
+                  {user.card_information !== "unknown" && (
+                    <a
+                      data-testid="refill-link"
+                      href="!#"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        setRefill(true);
+                      }}
+                    >
+                      Fyll på saldo
+                    </a>
+                  )}
                 </div>
               )}
               <a
@@ -45,28 +47,8 @@ const Payment = (props) => {
                   setChangePayment(true);
                 }}
               >
-                Ändra betalningsmetod
+                Uppdatera betalningsmetod
               </a>
-
-              <ChangePayment
-                title={"Betalningsmetod"}
-                isOpen={changePayment}
-                currentMethod={user.payment_method}
-                balance={user.balance}
-                cardNumber={user.card_information}
-                toggle={() => setChangePayment(false)}
-                setUser={setUser}
-                token={token}
-              />
-              <Refill
-                balance={user.balance}
-                isOpen={refill}
-                toggle={() => setRefill(false)}
-                userId={user._id}
-                currentBalance={user.balance}
-                setUser={setUser}
-                token={token}
-              />
             </>
           ) : (
             <>
@@ -96,12 +78,21 @@ const Payment = (props) => {
         setUser={setUser}
         token={token}
       />
+      <Refill
+        balance={user.balance}
+        isOpen={refill}
+        toggle={() => setRefill(false)}
+        userId={user._id}
+        currentBalance={user.balance}
+        setUser={setUser}
+        token={token}
+      />
     </>
   );
 };
 
 Payment.propTypes = {
-  user: PropTypes.string,
+  user: PropTypes.object,
   token: PropTypes.string,
   setUser: PropTypes.func,
 };

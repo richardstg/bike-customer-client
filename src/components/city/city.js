@@ -76,12 +76,12 @@ const City = (props) => {
     };
     getCities();
 
-    const getCurrentCity = async () => {
+    const getCurrentCity = async (currentCity) => {
       setError(null);
       setLoading(true);
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_BACKEND_URL}/cities/${props.currentCity}`,
+          `${process.env.REACT_APP_BACKEND_URL}/cities/${currentCity}`,
           {
             method: "GET",
             headers: {
@@ -103,9 +103,10 @@ const City = (props) => {
         setLoading(false);
       }
     };
-    props.currentCity === "unknown"
-      ? setSelectedCity("61a7603dbb53f131584de9b3")
-      : getCurrentCity();
+
+    !props.currentCity
+      ? getCurrentCity("61a7603dbb53f131584de9b3")
+      : getCurrentCity(props.currentCity);
   }, [props.currentCity]);
 
   return (
@@ -118,15 +119,12 @@ const City = (props) => {
               className="form-select"
               aria-label="Available bikes"
               onChange={(event) => setSelectedCity(event.target.value)}
+              value={selectedCity}
             >
               {cities &&
                 cities.length > 0 &&
                 cities.map((city) => (
-                  <option
-                    key={city._id}
-                    selected={selectedCity === city._id}
-                    value={city._id}
-                  >
+                  <option key={city._id} value={city._id}>
                     {city.name}
                   </option>
                 ))}
@@ -134,12 +132,7 @@ const City = (props) => {
             <button className="mt-2 mb-2 button-3 full-width">
               Spara{" "}
               {loading && (
-                <ClipLoader
-                  color={"#fffff"}
-                  loading={loading}
-                  // css={override}
-                  size={20}
-                />
+                <ClipLoader color={"#fffff"} loading={loading} size={20} />
               )}
             </button>
             {success && <p className="text-success">Stad sparad.</p>}
