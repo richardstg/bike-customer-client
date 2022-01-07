@@ -114,7 +114,7 @@ it("tests that the change payment method modal opens", async () => {
 
   fireEvent.click(link);
   expect(
-    await screen.queryAllByText(/Ändra betalningsmetod/i)[0]
+    await screen.queryAllByText(/Uppdatera betalningsmetod/i)[0]
   ).toBeInTheDocument();
 });
 

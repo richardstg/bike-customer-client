@@ -67,13 +67,13 @@ const TravelModal = (props) => {
                 <th scope="col" className="font-signature color-signature">
                   Genomsnittlig hastighet
                 </th>
-                <td>{travel.average_speed} km/h</td>
+                <td>{parseInt(travel.average_speed)} km/h</td>
               </tr>
               <tr>
                 <th scope="col" className="font-signature color-signature">
                   Distans
                 </th>
-                <td>{travel.distance} km</td>
+                <td>{travel.distance} m</td>
               </tr>
               <tr>
                 <th scope="col" className="font-signature color-signature">

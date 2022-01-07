@@ -56,7 +56,9 @@ const Refill = (props) => {
   return (
     <Modal isOpen={props.isOpen} toggle={props.toggle} centered={true}>
       <form data-testid="refill-form" onSubmit={submitRefill}>
-        <ModalHeader>Fyll på konto</ModalHeader>
+        <ModalHeader className="font-signature color-signature">
+          Fyll på konto
+        </ModalHeader>
         <ModalBody>
           <div className="form-group">
             <label htmlFor="refillAmount">Ange belopp (SEK):</label>
