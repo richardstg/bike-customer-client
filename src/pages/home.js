@@ -16,7 +16,9 @@ const Home = (props) => {
           `${process.env.REACT_APP_BACKEND_URL}/users/${props.userId}`,
           {
             method: "GET",
-            headers: { "x-access-token": props.token },
+            headers: {
+              "x-access-token": props.token,
+            },
           }
         );
         const data = await response.json();

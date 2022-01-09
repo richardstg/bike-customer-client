@@ -25,7 +25,7 @@ const Travels = (props) => {
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
-              headers: { "x-access-token": token },
+              "x-access-token": token,
             },
           }
         );

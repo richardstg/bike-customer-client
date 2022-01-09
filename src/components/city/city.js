@@ -22,7 +22,7 @@ const City = (props) => {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            headers: { "x-access-token": props.token },
+            "x-access-token": props.token,
           },
           body: JSON.stringify([{ propName: "city", value: selectedCity }]),
         }
@@ -58,7 +58,7 @@ const City = (props) => {
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
-              headers: { "x-access-token": props.token },
+              "x-access-token": props.token,
             },
           }
         );
@@ -87,7 +87,7 @@ const City = (props) => {
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
-              headers: { "x-access-token": props.token },
+              "x-access-token": props.token,
             },
           }
         );

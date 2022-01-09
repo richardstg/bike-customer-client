@@ -25,7 +25,7 @@ const Refill = (props) => {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            headers: { "x-access-token": props.token },
+            "x-access-token": props.token,
           },
           body: JSON.stringify([
             {
