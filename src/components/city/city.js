@@ -104,7 +104,7 @@ const City = (props) => {
       }
     };
 
-    !props.currentCity
+    !props.currentCity || props.currentCity === "unknown"
       ? getCurrentCity("61a7603dbb53f131584de9b3")
       : getCurrentCity(props.currentCity);
   }, [props.currentCity]);
